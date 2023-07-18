@@ -1,26 +1,23 @@
-NAME	= so_long
+NAME = so_long
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 
-CC		= cc
+MLX42FLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 
-CFLAGS	= -Wall -Werror -Wextra
+MLX42 = ./MLX42/build/libmlx42.a
 
-INCLUDE =
-
-SRCS    =  srcs/
+SRCS = srcs/
 
 LIBFT = libft/
 
-SRC = $(srcs)main.c $(srcs)map.c $(srcs)so_long.c $(srcs)init.c \
+SRC = $(SRCS)main1.c \
+	  #$(LIBFT)ft_atoi.c $(LIBFT)ft_isdigit.c $(LIBFT)ft_putstr.c $(LIBFT)ft_split.c $(LIBFT)ft_strlen.c $(LIBFT)ft_strcmp.c $(LIBFT)ft_strdup.c
 
-MLX 	=   MLX42/build/libmlx42.a
-
-MLX_H 	=	MLX42/include/MLX42/MLX42.h\
-
-OBJ		= $(SRCS:.c=.o)
+OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME) : $(OBJ)
+$(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $^
 
 %.o: %.c
