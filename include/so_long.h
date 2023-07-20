@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:36:35 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/18 20:25:14 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/20 15:32:34 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,25 @@
 #include <stdbool.h>
 #include "../MLX42/include/MLX42/MLX42.h"
 
-#define WALL 1
-#define WALL 1
-#define WALL 1
-
+#define WALL '1'
+#define COLLECTIBLE 'C'
+#define EXIT 'E'
+#define WIDTH 500
+#define HEIGHT 500
 
 typedef struct jeux
 {
-    size_t      height;
-    size_t      weight;
-    char        **grid;
-    
-} t_game;
+	size_t	height;
+	size_t	width;
+	size_t	x;
+	size_t	y;
+	size_t	coins;
+	size_t	coins;
+	size_t	exit_x;
+	size_t	exit_y;
+	char	**grid;
+	int		player_pos;
+}	t_game;
 /* libft */
 
 void	ft_putchar(char c);
