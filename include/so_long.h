@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:36:35 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/20 15:32:34 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/22 19:38:43 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,19 @@ typedef struct jeux
 	size_t	x;
 	size_t	y;
 	size_t	coins;
-	size_t	coins;
 	size_t	exit_x;
 	size_t	exit_y;
 	char	**grid;
 	int		player_pos;
 }	t_game;
-/* libft */
 
+typedef struct s_img
+{
+	mlx_image_t	*grass;
+}t_img;
+
+
+/* libft */
 void	ft_putchar(char c);
 void	ft_putstr(char *s);
 char	**ft_split(const char *s, char c);

@@ -6,12 +6,11 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:15:44 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/20 15:49:41 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/22 19:02:59 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
 
 bool	flood_fill(t_game *map, t_game curr, char **grid)
 {
@@ -60,6 +59,7 @@ void	check_path(t_game *map)
 	tmp.x = map->x;
 	tmp.y = map->y;
 	tmp.exit_x = 0;
+	tmp.exit_y = 0;
 	tmp.grid = ((char **)malloc(sizeof(char *) * tmp.height));
 	if (!tmp.grid)
 		return (NULL);
