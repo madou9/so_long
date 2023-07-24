@@ -6,11 +6,11 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:54:29 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/22 15:58:37 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/23 21:20:37 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/so_long.h"
+#include "../include/so_long.h"
 
 char	*read_map(const char *str)
 {
@@ -34,5 +34,12 @@ char	*read_map(const char *str)
 	close(fd);
 	map = ft_split(str_map, '\n');
 	free(str_map);
-	return (map);
+	return (*map);
+}
+
+void	display_error(const char *error_msg, bool exit_program)
+{
+	write(2, error_msg, ft_strlen(error_msg));
+	if (exit_program)
+		exit(EXIT_FAILURE);
 }

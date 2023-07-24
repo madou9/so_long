@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 12:55:38 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/22 17:13:02 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/23 15:36:53 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	check_wall(t_game *game)
 	size_t	last_col;
 
 	i = 0;
-	last_row = game->height - 1;
+	last_row = game->winsize->width - 1;
 	/* check the top and bottom rows */
-	while (i < game->width)
+	while (i < game->winsize->width)
 	{
 		if (game->grid[0][1] != '1' || game->grid[last_row][i] != '1')
 			display_error("Error: the map is not surrounded by walls", true);
@@ -62,7 +62,7 @@ void	check_wall(t_game *game)
 	}
 	/* Check the left and right columns (skip the top and bottom rows */
 	i = 1;
-	last_col = game->width - 1;
+	last_col = game->winsize->width - 1;
 	while (i < last_row)
 	{
 		if (game->grid[i][0] != '1' || game->grid[i][last_col] != '1')

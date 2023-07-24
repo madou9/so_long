@@ -6,13 +6,13 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 13:24:48 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/18 12:31:20 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/23 21:12:24 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	gnl_strlen(const char *s)
 {
 	size_t	i;
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-static size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+static size_t	gnl_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 
@@ -43,7 +43,7 @@ static size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*gnl_strjoin(char *s1, char *s2)
 {
 	char	*buf;
 	size_t	len1;
@@ -56,21 +56,21 @@ char	*ft_strjoin(char *s1, char *s2)
 			return (NULL);
 		s1[0] = 0;
 	}
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
+	len1 = gnl_strlen(s1);
+	len2 = gnl_strlen(s2);
 	buf = (char *)malloc((len1 + len2 + 1) * sizeof(char));
 	if (!buf)
 	{
 		free(s1);
 		return (NULL);
 	}
-	ft_strlcpy (buf, s1, len1 + 1);
-	ft_strlcpy (buf + len1, s2, len2 + 1);
+	gnl_strlcpy (buf, s1, len1 + 1);
+	gnl_strlcpy (buf + len1, s2, len2 + 1);
 	free(s1);
 	return (buf);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*gnl_strchr(char *s, int c)
 {
 	int	i;
 
@@ -78,7 +78,7 @@ char	*ft_strchr(char *s, int c)
 	if (!s)
 		return (0);
 	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
+		return ((char *)&s[gnl_strlen(s)]);
 	while (s[i] != '\0')
 	{
 		if (s[i] == (char) c)
@@ -88,20 +88,20 @@ char	*ft_strchr(char *s, int c)
 	return (0);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*gnl_substr(char *s, unsigned int start, size_t len)
 {
 	char	*buf;
 	size_t	x;
 
-	if (start >= ft_strlen (s))
+	if (start >= gnl_strlen (s))
 		return (0);
-	else if (ft_strlen(s) - start < len)
-		x = ft_strlen(s) - start;
+	else if (gnl_strlen(s) - start < len)
+		x = gnl_strlen(s) - start;
 	else
 		x = len;
 	buf = malloc (x + 1);
 	if (buf == NULL)
 		return (NULL);
-	ft_strlcpy(buf, s + start, len + 1);
+	gnl_strlcpy(buf, s + start, len + 1);
 	return (buf);
 }

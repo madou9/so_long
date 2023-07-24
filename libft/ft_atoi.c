@@ -6,58 +6,36 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 04:43:11 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/16 20:45:51 by ihama            ###   ########.fr       */
+/*   Updated: 2023/03/29 07:23:20 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-static int	ft_char_to_digit(char c)
+int	ft_atoi(const char *str)
 {
-	int	d;
+	int	sign;
+	int	result;
+	int	i;
 
-	d = 0;
-	if (ft_isdigit(c))
-		d = c - 48;
-	return (d);
-}
-
-static int	ft_is_space(int c)
-{
-	if (c == '\r' || c == '\t' || c == ' '
-		|| c == '\f' || c == '\v' || c == '\n')
-		return (1);
-	return (0);
-}
-
-int	ft_is_sign(char c)
-{
-	if (c == '+' || c == '-')
-		return (1);
-	return (0);
-}
-
-int64_t	ft_atoi(const char *str)
-{
-	int64_t	number;
-	int32_t	sign;
-	int		i;
-
-	number = 0;
+	result = 0;
 	sign = 1;
 	i = 0;
-	while (ft_is_space(str[i]))
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	if (ft_is_sign(str[i]))
+	if (str[i] == '-')
 	{
-		if (str[i] == '-')
-			sign *= -1;
+		sign = -1;
 		i++;
 	}
-	while (ft_isdigit(str[i]))
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		number = number * 10 + ft_char_to_digit(str[i]);
+		result *= 10;
+		result += str[i] - '0';
 		i++;
 	}
-	return (number * sign);
+	result *= sign;
+	return (result);
 }

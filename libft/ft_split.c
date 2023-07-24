@@ -6,11 +6,11 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 06:39:19 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/16 20:44:59 by ihama            ###   ########.fr       */
+/*   Updated: 2023/04/03 18:56:59 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
 static size_t	ft_count_words(const char *s, char c)
 {

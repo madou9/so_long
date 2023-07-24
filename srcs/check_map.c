@@ -6,40 +6,54 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:26:25 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/22 15:09:53 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/24 15:06:04 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	check_content_map(char **map)
+void	validate_and_count_characters(t_game *game, char c, int x, int y)
 {
-	int		i;
-	int		p;
-	int		e;
-	int		c;
-	char	*row;
-
-	i = 0;
-	row = map[i];
-	while (map[i])
+	if (c == 'C')
+		game->collect++;
+	else if (c == 'E')
+		game->exit++;
+	else if (c == 'P')
 	{
-		while (*row)
-		{
-			if (*row == 'P')
-				p++;
-			else if (*row == 'C')
-				c++;
-			else if (*row == 'E')
-				e++;
-			else if (ft_strchr("01PCE", *row) == NULL)
-				display_error("Map does not contain valid Characters", true);
-			row++;
-		}
-		i++;
+		game->player++;
+		game->link_y = y;
+		game->link_x = x;
 	}
-	if (p != 1 || e != 1 || c < 1)
-		display_error("content of the map is not valid", true);
+	else if (c != '1' && c != '0')
+		printf("put 01PEC in map");
+}
+
+void	check_map(t_game *game)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	if (!game->grid)
+		free(game);
+	while (game->grid[x])
+	{
+		y = 0;
+		while (game->grid[x][y])
+		{
+			validate_and_count_characters(game, game->grid[x][y], x, y);
+			y++;
+		}
+		x++;
+	}
+	if (game->collect == 0)
+		printf("at least one collectible");
+	if (game->player == 0)
+		printf("at least one player");
+	if (game->player > 1)
+		printf("almost one player allowed");
+	if (game->exit == 0 || game->exit > 1)
+		printf("MIssing an exit or too many");
 }
 
 void	check_map_rectangle(char **map)
@@ -52,7 +66,7 @@ void	check_map_rectangle(char **map)
 	while (map[i] != NULL)
 	{
 		if (ft_strlen(map[i]) != first_row_len)
-			display_error("damm your map is not rectangle", true);
+			printf("damm your map is not rectangle");
 		i++;
 	}
 }
@@ -60,12 +74,5 @@ void	check_map_rectangle(char **map)
 void	check_empty_map(char **map)
 {
 	if (map[0] == NULL)
-		display_error("dammm your map is empty", true);
-}
-
-void	display_error(const char *error_msg, bool exit_program)
-{
-	write(2, error_msg, ft_strlen(error_msg));
-	if (exit_program)
-		exit(EXIT_FAILURE);
+		printf("dammm your map is empty");
 }

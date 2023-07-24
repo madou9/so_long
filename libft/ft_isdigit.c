@@ -6,15 +6,15 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:41:23 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/16 20:42:32 by ihama            ###   ########.fr       */
+/*   Updated: 2023/03/26 04:40:29 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
 int	ft_isdigit(int c)
 {
-	if ('0' <= c && c <= '9')
+	if ((c >= '0' && c <= '9'))
 		return (1);
 	return (0);
 }

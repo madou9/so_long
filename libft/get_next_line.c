@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:46:35 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/18 12:30:48 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/23 20:58:44 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*read_str(int fd, char *s)
 	if (!d)
 		return (NULL);
 	len = 1;
-	while (!ft_strchr(s, '\n') && len != 0)
+	while (!gnl_strchr(s, '\n') && len != 0)
 	{
 		len = read(fd, d, BUFFER_SIZE);
 		if (len == -1)
@@ -43,7 +43,7 @@ char	*read_str(int fd, char *s)
 			return (NULL);
 		}
 		d[len] = '\0';
-		s = ft_strjoin(s, d);
+		s = gnl_strjoin(s, d);
 	}
 	free (d);
 	return (s);
@@ -65,8 +65,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	i = read_line(s);
-	sr = ft_substr(s, i, ft_strlen(s) - i);
-	line = ft_substr(s, 0, i);
+	sr = gnl_substr(s, i, gnl_strlen(s) - i);
+	line = gnl_substr(s, 0, i);
 	free(s);
 	return (line);
 }

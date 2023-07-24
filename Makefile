@@ -2,37 +2,75 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-MLX42FLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
-
-MLX42 = ./MLX42/build/libmlx42.a
-
 SRCS = srcs/
 
-LIBFT = libft/
+LIBFT = ./libft/libft.a
 
-SRC = $(SRCS)main1.c \
-	  #$(LIBFT)ft_atoi.c $(LIBFT)ft_isdigit.c $(LIBFT)ft_putstr.c $(LIBFT)ft_split.c $(LIBFT)ft_strlen.c $(LIBFT)ft_strcmp.c $(LIBFT)ft_strdup.c
+INCLUDE = -I./include
+SRC = $(SRCS)main.c $(SRCS)map.c $(SRCS)init_game.c  $(SRCS)check_map.c  $(SRCS)check_map1.c  $(SRCS)parse_map.c \
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^
+$(NAME): $(OBJ) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+$(LIBFT):
+	@$(MAKE) -C ./libft
 
 clean:
+	@$(MAKE) clean -C ./Libft
 	rm -rf $(OBJ)
 
 fclean: clean
+	@$(MAKE) fclean -C ./Libft
 	rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+# PROJECT = so long
+# CC = gcc
+# CFLAGS = -Wall -Wextra -Werror
+# MLX42FLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+# NAME = so_long
+# LIBFT = ./libft/libft.a
+# MLX42 = ./MLX42/libmlx42.a
+# INCLUDE = -I./include
+# SRC =  ./src/so_long.c ./src/render_map.c		\
+# OBJ_DIR = obj
 
+# all: $(NAME)
 
+# $(NAME): $(LIBFT) $(MLX42) $(OBJ)	
+# 	@echo "Compiled with $(BLUE)$(CFLAGS)$(RESET)"
+# 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX42) $(MLX42FLAGS)
+# 	@echo "$(CYAN)-------------------------------------------"
+# 	@echo "	$(NAME) = NOW READY FOR USE!"
+# 	@echo "-------------------------------------------$(RESET)"
 
-# /Users/ihama/.brew/include/GLFW/
+# $(LIBFT):
+# 	@$(MAKE) -C ./Libft
+
+# $(MLX42):
+# 	@$(MAKE) -C ./MLX42
+
+# $(OBJ_DIR)/%.o: ./src/%.c
+# 	@mkdir -p $(OBJ_DIR)
+# 	@echo "Compiled ✅ $(CYAN) $^ $(RESET)"
+# 	@$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $^
+
+# clean:
+# 	@$(MAKE) clean -C ./Libft
+# 	@$(MAKE) clean -C ./MLX42
+# 	@rm -rf $(OBJ_DIR)
+
+# fclean: clean
+# 	@$(MAKE) fclean -C ./Libft
+# 	@$(MAKE) fclean -C ./MLX42
+# 	@rm -f $(NAME)
+# 	@echo "$(GREEN) $(PROJECT) $(RESET) Cleansed ✅"
+
+# re: fclean all
+
+# .PHONY: all clean fclean re
