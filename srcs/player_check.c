@@ -37,6 +37,31 @@ void	aroundplayer(t_game *game, int x, int y)
 	}
 }
 
+int exitcheck(t_game *game)
+{
+	int x;
+	int y;
+
+	x = 0;
+	while (game->mapcopy[x])
+	{
+		y = 0;
+		while (game->mapcopy[x][y])
+		{
+			if (game->mapcopy[x][y] == 'E' &&
+				(game->mapcopy[x][y + 1] == 'P' || game->mapcopy[x][y - 1] == 'P' ||
+				 game->mapcopy[x - 1][y] == 'P' || game->mapcopy[x + 1][y] == 'P'))
+			{
+				return 1;
+			}
+			y++;
+		}
+		x++;
+	}
+	printf("No successful path found\n");
+	return 0;
+}
+
 int	mapcopy(t_game *game)
 {
 	int	x;
@@ -74,7 +99,7 @@ int	path_ok(t_game *game)
 		y = 0;
 		while (game->mapcopy[x][y])
 		{
-			if (checkplayer(game, x, y))
+			if (check_player(game, x, y))
 			{
 				aroundplayer(game, x + 1, y);
 				aroundplayer(game, x - 1, y);
@@ -89,4 +114,5 @@ int	path_ok(t_game *game)
 	if (game->copycollect == 0 && exitcheck(game))
 		return (1);
 	printf("no path found");
+	return (0);
 }

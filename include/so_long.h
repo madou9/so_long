@@ -20,53 +20,57 @@
 # include <fcntl.h>
 # include <memory.h>
 # include <time.h>
+# include <fcntl.h>
+# include <memory.h>
+# include <stdbool.h>
+# include <stddef.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <sys/errno.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <unistd.h> 
 
-#define WALL '1'
-#define COLLECTIBLE 'C'
-#define EXIT 'E'
-#define WIDTH 500
-#define HEIGHT 500
-
-typedef struct t_winsize
-{
-	size_t	height;
-	size_t	width;
-	size_t	x;
-	size_t	y;
-}			t_winsize;
+# define TRUE 1
+# define FALSE 0
 
 typedef struct s_game
 {
 	int			collect;
 	int			copycollect;
 	int			exit;
+	int			width;
+	int			height;
 	int			player;
-	size_t		link_x;
-	size_t		link_y;
+	int			link_x;
+	int			link_y;
 	char		**grid;
 	char		**mapcopy;
-	t_winsize	*winsize;
 	int			player_pos;
 }				t_game;
 
 /* check map */
 
-char	*read_map(const char *str);
-void	check_content_map(char **map);
-void	check_map_rectangle(char **map);
-void	check_empty_map(char **map);
-void	check_empty_line(char **map);
-int		check_ber(char *map_file);
-void	check_wall(t_game *game);
-int		flood_fill(t_game *temp, size_t y, size_t x);
-void	free_grid(char **grid, size_t height);
-void	check_path(t_game *game);
+void	check_map(t_game *game);
+t_game	initilize_data(t_game *game);
+int		get_map_size(char *map);
+char	*print_map(char *map);
+char	*read_map_file(char *filename);
+void	check_empty(char *map);
 
 /*error function*/
-void	display_error(const char *error_msg, bool exit_program);
 
 /* initialisation */
 
-t_game	initilize_data(char **map);
+t_game	initilize_data(t_game *game);
+
+int		count_line(char **xy_map);
+void	free_string_array(char **array);
+int		check_shape(char *map);
+void	check_map(t_game *game);
+void	validate_and_count_characters(t_game *game, char c, int x, int y);
+void	error_message(char *msg);
 
 #endif

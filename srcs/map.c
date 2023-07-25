@@ -12,34 +12,88 @@
 
 #include "../include/so_long.h"
 
-char	*read_map(const char *str)
+int	count_line(char **xy_map)
 {
-	int		fd;
-	char	*str_map;
-	char	*line;
-	char	**map;
+	int		i;
 
-	fd = open(str, O_RDONLY);
-	if (fd < 0)
-		display_error("Error opening the map file.\n", true);
-	str_map = ft_strdup("");
-	while (1)
+	i = 0;
+	while (xy_map[i])
+		i++;
+	return (i);
+}
+
+int	get_map_size(char *map)
+{
+	char	*buffer;
+	int		total_bytes;
+	int		byte_chunks;
+	int		fd;
+
+	printf("get_map_size!\n");
+	fd = open(map, O_RDONLY);
+	total_bytes = 0;
+	buffer = malloc (sizeof(int) * 1024);
+	byte_chunks = read(fd, buffer, 1024);
+	if (!(byte_chunks))
 	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		str_map = ft_strjoin(str_map, line);
-		free(line);
+		free (buffer);
+		close(fd);
+		return (0);
+	}
+	total_bytes = total_bytes + byte_chunks;
+	if (byte_chunks != '\0')
+	{
+		byte_chunks = read(fd, buffer, 1024);
+		total_bytes = total_bytes + byte_chunks;
 	}
 	close(fd);
-	map = ft_split(str_map, '\n');
-	free(str_map);
-	return (*map);
+	free (buffer);
+	return (total_bytes);
 }
 
-void	display_error(const char *error_msg, bool exit_program)
+char	*read_map_file(char *filename)
 {
-	write(2, error_msg, ft_strlen(error_msg));
-	if (exit_program)
-		exit(EXIT_FAILURE);
+	int		fd;
+	int		num_bytes;
+	char	*map_buffer;
+
+	printf("read_map_file!\n");
+	num_bytes = get_map_size(filename) + 1;
+	if (num_bytes <= 0)
+		return (NULL);
+	map_buffer = calloc(sizeof(char), num_bytes);
+	if (!map_buffer)
+		return (NULL);
+	fd = open(filename, O_RDONLY);
+	read(fd, map_buffer, num_bytes);
+	close(fd);
+	return (map_buffer);
 }
+
+// char	*print_map(char *map)
+// {
+// 	char	*str;
+// 	int		total_bytes;
+// 	int		fd;
+
+// 	printf("print_map!\n");
+// 	total_bytes = (get_map_size(map) + 1);
+// 	str = (char *)malloc(sizeof(char) * total_bytes);
+// 	if (!str)
+// 		return (NULL);
+// 	fd = open(map, O_RDONLY);
+// 	if (fd == -1)
+// 	{
+// 		free(str);
+// 		return (NULL);
+// 	}
+// 	if (read(fd, str, total_bytes) == -1)
+// 	{
+// 		free(str);
+// 		close(fd);
+// 		return (NULL);
+// 	}
+// 	str[total_bytes - 1] = 0;
+// 	close(fd);
+// 	return (str);
+// }

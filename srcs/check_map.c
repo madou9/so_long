@@ -25,7 +25,7 @@ void	validate_and_count_characters(t_game *game, char c, int x, int y)
 		game->link_x = x;
 	}
 	else if (c != '1' && c != '0')
-		printf("put 01PEC in map");
+		error_message("put 01PEC in map");
 }
 
 void	check_map(t_game *game)
@@ -47,32 +47,46 @@ void	check_map(t_game *game)
 		x++;
 	}
 	if (game->collect == 0)
-		printf("at least one collectible");
+		error_message("at least one collectible\n");
 	if (game->player == 0)
-		printf("at least one player");
+		error_message("at least one player\n");
 	if (game->player > 1)
-		printf("almost one player allowed");
+		error_message("almost one player allowed\n");
 	if (game->exit == 0 || game->exit > 1)
-		printf("MIssing an exit or too many");
+		error_message("MIssing an exit or too many\n");
 }
 
-void	check_map_rectangle(char **map)
+int	check_shape(char *map)
 {
-	size_t	first_row_len;
+	char	**map_sketch;
+	size_t	reference;
+	int		i;
+	int		j;
+
+	map_sketch = ft_split(map, '\n');
+	reference = ft_strlen(map_sketch[0]);
+	i = count_line(map_sketch);
+	j = 0;
+	while (j < i)
+	{
+		if (ft_strlen(map_sketch[j]) != reference)
+		{
+			printf("Error :check shape\n");
+			free_string_array(map_sketch);
+			return (TRUE);
+		}
+		j++;
+	}
+	printf("Good:check shape\n");
+	free_string_array(map_sketch);
+	return (0);
+}
+
+void	check_empty(char *map)
+{
 	size_t	i;
 
 	i = 0;
-	first_row_len = ft_strlen(map[i]);
-	while (map[i] != NULL)
-	{
-		if (ft_strlen(map[i]) != first_row_len)
-			printf("damm your map is not rectangle");
-		i++;
-	}
-}
-
-void	check_empty_map(char **map)
-{
-	if (map[0] == NULL)
-		printf("dammm your map is empty");
+	if (!map[i])
+		error_message("Map is empty");
 }

@@ -7,7 +7,7 @@ SRCS = srcs/
 LIBFT = ./libft/libft.a
 
 INCLUDE = -I./include
-SRC = $(SRCS)main.c $(SRCS)map.c $(SRCS)init_game.c  $(SRCS)check_map.c  $(SRCS)check_map1.c  $(SRCS)parse_map.c \
+SRC = $(SRCS)so_long.c $(SRCS)map.c $(SRCS)init_game.c  $(SRCS)check_map.c  $(SRCS)check_map1.c  $(SRCS)player_check.c \
 
 OBJ = $(SRC:.c=.o)
 

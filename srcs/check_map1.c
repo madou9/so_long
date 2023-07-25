@@ -12,17 +12,17 @@
 
 #include "../include/so_long.h"
 
-void	check_empty_line(char **map)
+void	free_string_array(char **array)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (map[i])
+	while (array[i])
 	{
-		if (map[i][0] == '\0')
-			display_error("Error: empty line", true);
+		free(array[i]);
 		i++;
 	}
+	free(array);
 }
 
 int	check_ber(char *map_file)
@@ -45,28 +45,44 @@ int	check_ber(char *map_file)
 	return (1);
 }
 
-void	check_wall(t_game *game)
+void check_walls(t_game *game)
 {
-	size_t	i;
-	size_t	last_row;
-	size_t	last_col;
-
+	int i;
+	int j;
+	int len;
 	i = 0;
-	last_row = game->winsize->width - 1;
-	/* check the top and bottom rows */
-	while (i < game->winsize->width)
+	j = count_line(game->grid) - 1;
+	len = ft_strlen(game->grid[0]);
+	while (i < len)
 	{
-		if (game->grid[0][1] != '1' || game->grid[last_row][i] != '1')
-			display_error("Error: the map is not surrounded by walls", true);
+		if (game->grid[0][i] != '1' || game->grid[j][i] != '1')
+			error_message("Top or bottom border is not valid.\n");
 		i++;
 	}
-	/* Check the left and right columns (skip the top and bottom rows */
-	i = 1;
-	last_col = game->winsize->width - 1;
-	while (i < last_row)
+	j = -1;
+	while (++j < count_line(game->grid) - 1)
 	{
-		if (game->grid[i][0] != '1' || game->grid[i][last_col] != '1')
-			display_error("Error: thr map is not surrounded by walls", true);
-		i++;
+		if (game->grid[j][0] != '1' || game->grid[j][len - 1] != '1')
+			error_message("Left or right border is not valid.\n");
 	}
 }
+
+void	error_message(char *msg)
+{
+	ft_putstr_fd("Error\n", 2);
+	ft_putendl_fd(msg, 2);
+	exit(1);
+}
+
+// void	check_empty_line(char **map)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	while (map[i])
+// 	{
+// 		if (map[i][0] == '\0')
+// 			display_error("Error: empty line", true);
+// 		i++;
+// 	}
+// }

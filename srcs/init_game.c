@@ -12,31 +12,15 @@
 
 #include "../include/so_long.h"
 
-t_game	initilize_data(char **map)
+t_game	initilize_data(t_game *game)
 {
-	t_game	*data;
-	char	*map_as_str;
-	char	**map_as_array;
-
-	map_as_str = read_map(*map);
-	check_empty_map(&map_as_str);
-	check_empty_line(&map_as_str);
-	check_content_map(&map_as_str);
-	map_as_array = ft_split(map_as_str, '\n');
-	check_map_rectangle(map_as_array);
-	data = (t_game *)malloc(sizeof(t_game));
-	if (!data)
-		display_error("Memory allocation failed.", true);
-	data->winsize->width = 0;
-	data->winsize->height = 0;
-	data->winsize->x = 0;
-	data->winsize->y = 0;
-	data->coins = 0;
-	data->exit_x = 0;
-	data->exit_y = 0;
-	data->grid = map_as_array;
-	check_wall(data);
-	check_path(data);
-	free(map_as_str);
-	return (*data);
+	game->grid = NULL;
+	game->mapcopy = NULL;
+	game->link_x = 0;
+	game->link_y = 0;
+	game->collect = 0;
+	game->copycollect = 0;
+	game->player = 0;
+	game->exit = 0;
+	return (*game);
 }
