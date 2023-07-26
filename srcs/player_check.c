@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 int	check_player(t_game *game, int x, int y)
 {
@@ -67,6 +67,7 @@ int	mapcopy(t_game *game)
 	int	x;
 	int	y;
 
+	x = 0;
 	game->mapcopy = ft_calloc(game->link_y + 1, sizeof(char *));
 	if (!game->mapcopy)
 		return (0);

@@ -40,6 +40,7 @@ typedef struct s_game
 {
 	int			collect;
 	int			copycollect;
+	int			exit_x;
 	int			exit;
 	int			width;
 	int			height;
@@ -56,9 +57,13 @@ typedef struct s_game
 void	check_map(t_game *game);
 t_game	initilize_data(t_game *game);
 int		get_map_size(char *map);
-char	*print_map(char *map);
+int		path_ok(t_game *game);
+int		exitcheck(t_game *game);
+int		checkplayer(t_game *game, int x, int y);
 char	*read_map_file(char *filename);
 void	check_empty(char *map);
+void	check_path(t_game *game);
+void	free_grid(char **grid, size_t height);
 
 /*error function*/
 
@@ -70,7 +75,13 @@ int		count_line(char **xy_map);
 void	free_string_array(char **array);
 int		check_shape(char *map);
 void	check_map(t_game *game);
+void	aroundplayer(t_game *game, int x, int y);
 void	validate_and_count_characters(t_game *game, char c, int x, int y);
 void	error_message(char *msg);
+void	check_walls(t_game *game);
+
+int	count_rupees(t_game *game);
+int	get_link_pos(t_game *game, char c );
+int	get_exit_pos(t_game *game, char c );
 
 #endif

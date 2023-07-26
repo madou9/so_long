@@ -1,3 +1,5 @@
+#include "../include/so_long.h"
+
 int	checkplayer(t_game *game, int x, int y)
 {
 	if (game->mapcopy[x][y] == 'P' &&

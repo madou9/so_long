@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 	}
 	check_walls(&game);
 	check_map(&game);
-	path_ok(&game);
+	check_path(&game);
 	free_string_array(game.grid);
 	//Check if the path is valid
 	// if (path_ok(&game))
