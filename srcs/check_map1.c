@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 12:55:38 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/23 15:36:53 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/27 15:09:16 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ int	check_ber(char *map_file)
 	return (1);
 }
 
-void check_walls(t_game *game)
+void	check_walls(t_game *game)
 {
-	int i;
-	int j;
-	int len;
+	int	i;
+	int	j;
+	int	len;
+
 	i = 0;
 	j = count_line(game->grid) - 1;
 	len = ft_strlen(game->grid[0]);

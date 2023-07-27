@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:54:29 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/23 21:20:37 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/26 19:16:09 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,31 +69,3 @@ char	*read_map_file(char *filename)
 	close(fd);
 	return (map_buffer);
 }
-
-// char	*print_map(char *map)
-// {
-// 	char	*str;
-// 	int		total_bytes;
-// 	int		fd;
-
-// 	printf("print_map!\n");
-// 	total_bytes = (get_map_size(map) + 1);
-// 	str = (char *)malloc(sizeof(char) * total_bytes);
-// 	if (!str)
-// 		return (NULL);
-// 	fd = open(map, O_RDONLY);
-// 	if (fd == -1)
-// 	{
-// 		free(str);
-// 		return (NULL);
-// 	}
-// 	if (read(fd, str, total_bytes) == -1)
-// 	{
-// 		free(str);
-// 		close(fd);
-// 		return (NULL);
-// 	}
-// 	str[total_bytes - 1] = 0;
-// 	close(fd);
-// 	return (str);
-// }
