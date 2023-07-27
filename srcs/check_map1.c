@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 12:55:38 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/27 15:09:16 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/27 21:12:59 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_ber(char *map_file)
 
 	file_extension = ".ber";
 	i = 0;
-	while (ft_strlen(map_file) != 4 && map_file)
+	while (map_file[i] && ft_strlen(map_file) >= 4)
 		map_file++;
 	if (!map_file || !*map_file)
 		return (0);

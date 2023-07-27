@@ -6,7 +6,13 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:54:49 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/16 15:54:54 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/27 18:44:33 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../include/so_long.h"
+
+void	move_up(t_game *game)
+{
+	if (game->grid[m])
+}
