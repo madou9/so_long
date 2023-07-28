@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:36:35 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/27 20:51:27 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/28 22:29:09 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define TRUE 1
 # define FALSE 0
 # define PIXEL 50
-#define WIDTH 256
-#define HEIGHT 256
+#define WIDTH 756
+#define HEIGHT 756
 
 typedef struct s_textures {
 	mlx_texture_t	*floor;
@@ -49,11 +49,10 @@ typedef struct s_images {
 
 typedef struct s_game
 {
-	t_images	*imag;
 	t_textures	*textu;
+	t_images	*imag;
 	int			collect;
-	int			copycollect;
-	int			exit_x;
+	int			move_count;
 	int			exit;
 	int			width;
 	int			height;
@@ -76,10 +75,13 @@ char	*read_map_file(char *filename);
 void	get_image(t_game *game);
 void	get_texture(t_game *game);
 void	put_img_floor(t_game *game, t_images *image);
-void	put_img_map(t_game *game, t_game *image);
+void	put_img_map(t_game *game, t_images *image);
+int		row_count(char **grid);
+int		valide_mlx_game(t_game *game);
+t_game	*initilize_data(t_game *game);
 
 /* initialisation */
-
+void	check_empty(char *map);
 int		count_line(char **xy_map);
 void	free_string_array(char **array);
 int		check_shape(char *map);
@@ -91,5 +93,8 @@ void	check_walls(t_game *game);
 int		count_rupees(t_game *game);
 int		get_link_pos(t_game *game, char c );
 int		get_exit_pos(t_game *game, char c );
+
+void	image_select(t_game *data, size_t y, size_t x);
+void	render_map(t_game *data);
 
 #endif

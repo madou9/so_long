@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   collect.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/16 15:12:26 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/28 22:31:11 by ihama            ###   ########.fr       */
+/*   Created: 2023/07/28 13:28:39 by ihama             #+#    #+#             */
+/*   Updated: 2023/07/28 15:14:35 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static void error(void)
-{
-	puts(mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
-}
+// void	delete_colect(t_game *game)
+// {
 
-int32_t	valide_mlx_game(t_game *game)
-{
-	initilize_data(game);
-	game->mlx = mlx_init(WIDTH,
-			HEIGHT, "so_long", false);
-	if (!(game->mlx))
-		error();
-	get_texture(game);
-	get_image(game);
-	render_map(game);
-	mlx_loop(game->mlx);
-	mlx_terminate(game->mlx);
-	free(game->textu);
-	free(game->imag);
-	return (EXIT_SUCCESS);
-}
+// }
+
+// void	check_collect(t_game *game)
+// {
+// 	if (game->grid[game->imag->player->instances->y / 32]
+// 		[game->imag->player->instances->x / 32] == 'C')
+// 	{
+// 		delete_colect(game);
+// 		game->grid[game->imag->player->instances->y / 32]
+// 			[game->imag->player->instances->x / 32] == '1';
+// 		game->collect++;
+// 		if (game->collect == game)
+
+// 	}
+// }
