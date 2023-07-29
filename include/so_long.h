@@ -26,8 +26,8 @@
 # define TRUE 1
 # define FALSE 0
 # define PIXEL 50
-#define WIDTH 756
-#define HEIGHT 756
+#define WIDTH 460
+#define HEIGHT 160
 
 typedef struct s_textures {
 	mlx_texture_t	*floor;
@@ -94,7 +94,8 @@ int		count_rupees(t_game *game);
 int		get_link_pos(t_game *game, char c );
 int		get_exit_pos(t_game *game, char c );
 
-void	image_select(t_game *data, size_t y, size_t x);
+void	image_select(t_game *data,char val, size_t ay, size_t ax);
 void	render_map(t_game *data);
+void	resize_image(t_game *game);
 
 #endif

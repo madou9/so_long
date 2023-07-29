@@ -40,29 +40,37 @@ void	get_texture(t_game *game)
 	game->textu->exit_2 = mlx_load_png("../textures/salida2.png");
 }
 
-void	image_select(t_game *data, size_t y, size_t x)
+void	resize_image(t_game *game)
 {
-	size_t	img_size;
+	mlx_resize_image(game->imag->floor, 32, 32);
+	mlx_resize_image(game->imag->wall, 32, 32);
+	mlx_resize_image(game->imag->player, 32, 32);
+	mlx_resize_image(game->imag->collec, 32, 32);
+	mlx_resize_image(game->imag->exit, 32, 32);
+	mlx_resize_image(game->imag->exit_2, 32, 32);
+}
 
-	img_size = 32;
-	if (data->grid[y][x] == '1')
+void	image_select(t_game *data,char val, size_t ay, size_t ax)
+{
+
+	if (val == '1')
 		printf("data->image_select = %d\n", data->height);
 		if (mlx_image_to_window(data->mlx, data->imag->floor,
-				x * 32, y * 32) < 0)
+				ax, ay) < 0)
 			error_message("Failed to put image to window");
-	if (data->grid[y][x] == 'C')
+	if (val == 'C')
 		if (mlx_image_to_window(data->mlx, data->imag->collec,
-				x * 32 + img_size / 2, y * 32 + img_size / 2) < 0)
+				ax, ay) < 0)
 			error_message("Failed to put image to window");
-	if (data->grid[y][x] == 'P')
+	if (val == 'P')
 		if (mlx_image_to_window(data->mlx, data->imag->player,
-				x * 32, y * 32) < 0)
+				ax, ay) < 0)
 			error_message("Failed to put image to window");
-	if (data->grid[y][x] == 'E')
+	if (val == 'E')
 		if ((mlx_image_to_window(data->mlx, data->imag->exit,
-				x * 32, y * 32) < 0) &&
+				ax, ay) < 0) &&
 			mlx_image_to_window(data->mlx, data->imag->exit_2,
-				x * 32, y * 32))
+				ax, ay))
 			error_message("Failed to put image to window");
 }
 
@@ -70,19 +78,25 @@ void	render_map(t_game *data)
 {
 	int		x;
 	int		y;
-	x = 0;
+	int		ax;
+	int		ay;
+
 	y = 0;
+	ay =0;
 	while (y < data->height)
 	{
-		x = 0;
 		printf("data->height = %d\n", data->height);
+		x = 0;
+		ax = 0;
 		while (x < data->width)
 		{
-			image_select(data, y, x);
-			printf("data->height = %d\n", data->height);
+			printf("data->width = %d\n", data->width);
+			image_select(data, data->grid[y][x], ay, ax);
 			x++;
+			ax += 32;
 		}
 		y++;
+		ay += 32;
 	}
 }
 

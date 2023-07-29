@@ -21,12 +21,13 @@ static void error(void)
 int32_t	valide_mlx_game(t_game *game)
 {
 	initilize_data(game);
-	game->mlx = mlx_init(WIDTH,
-			HEIGHT, "so_long", false);
+	game->mlx = mlx_init(game->width,
+			game->height, "so_long", false);
 	if (!(game->mlx))
 		error();
 	get_texture(game);
 	get_image(game);
+	resize_image(game);
 	render_map(game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);

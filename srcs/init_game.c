@@ -14,6 +14,7 @@
 
 t_game	*initilize_data(t_game *game)
 {
-	game->grid = game->grid;
+	game->height = 5;
+	game->width = 13;
 	return (game);
 }

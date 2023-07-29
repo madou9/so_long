@@ -15,14 +15,18 @@
 
 int main(int argc, char *argv[])
 {
-    t_game  game;
+    t_game  *game;
+    char **map_as_array;
     char *map_as_str;
 
     if (argc != 2)
         printf("Error: put one file\n");
+    game = malloc(sizeof(t_game));
     map_as_str = read_map_file(argv[1]);
-    game.grid = &map_as_str;
-    valide_mlx_game(&game);
+    map_as_array = ft_split(map_as_str, '\n');
+    //printf("%s\n", map_as_str);
+    game->grid = map_as_array;
+    valide_mlx_game(game);
 //     check_empty(*(game.grid));
 //     check_shape(*(game.grid));
 //    map_as_array = ft_split(*(game.grid), '\n');
