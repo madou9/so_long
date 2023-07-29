@@ -12,9 +12,19 @@
 
 #include "../include/so_long.h"
 
+void	get_width_and_height(t_game *game)
+{
+	game->width = 0;
+	game->height = 0;
+	while(game->grid[game->height])
+		game->height++;
+	while(game->grid[0][game->width])
+		game->width++;
+}
+
 t_game	*initilize_data(t_game *game)
 {
-	game->height = 5;
-	game->width = 13;
+	get_width_and_height(game);
+	game->img_size = 32;
 	return (game);
 }

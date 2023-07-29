@@ -32,9 +32,9 @@ void	get_image(t_game *game)
 void	get_texture(t_game *game)
 {
 	game->textu = ft_calloc(1, sizeof(t_textures));
-	game->textu->wall = mlx_load_png("../resources/background.png");
+	game->textu->wall = mlx_load_png("../textures/wall.png");
 	game->textu->floor = mlx_load_png("../textures/floor.png");
-	game->textu->player = mlx_load_png("../textures/Mago.png");
+	game->textu->player = mlx_load_png("../resources/hero/1.png");
 	game->textu->collec = mlx_load_png("../textures/spark21.png");
 	game->textu->exit = mlx_load_png("../textures/salida.png");
 	game->textu->exit_2 = mlx_load_png("../textures/salida2.png");
@@ -42,36 +42,47 @@ void	get_texture(t_game *game)
 
 void	resize_image(t_game *game)
 {
-	mlx_resize_image(game->imag->floor, 32, 32);
-	mlx_resize_image(game->imag->wall, 32, 32);
-	mlx_resize_image(game->imag->player, 32, 32);
-	mlx_resize_image(game->imag->collec, 32, 32);
-	mlx_resize_image(game->imag->exit, 32, 32);
-	mlx_resize_image(game->imag->exit_2, 32, 32);
+	mlx_resize_image(game->imag->floor, game->img_size, game->img_size);
+	mlx_resize_image(game->imag->wall, game->img_size, game->img_size);
+	mlx_resize_image(game->imag->player, game->img_size, game->img_size);
+	mlx_resize_image(game->imag->collec, game->img_size, game->img_size);
+	mlx_resize_image(game->imag->exit, game->img_size, game->img_size);
+	mlx_resize_image(game->imag->exit_2, game->img_size, game->img_size);
 }
 
 void	image_select(t_game *data,char val, size_t ay, size_t ax)
 {
 
+	if (mlx_image_to_window(data->mlx, data->imag->floor,
+			ax, ay) < 0)
+		error_message("Failed to put image to window");
 	if (val == '1')
+	{
 		printf("data->image_select = %d\n", data->height);
-		if (mlx_image_to_window(data->mlx, data->imag->floor,
+		if (mlx_image_to_window(data->mlx, data->imag->wall,
 				ax, ay) < 0)
 			error_message("Failed to put image to window");
+	}
 	if (val == 'C')
+	{
 		if (mlx_image_to_window(data->mlx, data->imag->collec,
 				ax, ay) < 0)
 			error_message("Failed to put image to window");
+	}
 	if (val == 'P')
+	{
 		if (mlx_image_to_window(data->mlx, data->imag->player,
 				ax, ay) < 0)
 			error_message("Failed to put image to window");
+	}
 	if (val == 'E')
+	{
 		if ((mlx_image_to_window(data->mlx, data->imag->exit,
 				ax, ay) < 0) &&
 			mlx_image_to_window(data->mlx, data->imag->exit_2,
 				ax, ay))
 			error_message("Failed to put image to window");
+	}
 }
 
 void	render_map(t_game *data)
@@ -85,18 +96,19 @@ void	render_map(t_game *data)
 	ay =0;
 	while (y < data->height)
 	{
-		printf("data->height = %d\n", data->height);
+		// printf("data->height = %d\n", data->height);
 		x = 0;
 		ax = 0;
+		printf("the line here is %s\n", data->grid[y]);
 		while (x < data->width)
 		{
-			printf("data->width = %d\n", data->width);
+			// printf("data->width = %d\n", data->width);
 			image_select(data, data->grid[y][x], ay, ax);
 			x++;
-			ax += 32;
+			ax += data->img_size;
 		}
 		y++;
-		ay += 32;
+		ay += data->img_size;
 	}
 }
 

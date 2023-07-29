@@ -53,6 +53,7 @@ typedef struct s_game
 	t_images	*imag;
 	int			collect;
 	int			move_count;
+	int			img_size;
 	int			exit;
 	int			width;
 	int			height;
@@ -74,11 +75,10 @@ char	*read_map_file(char *filename);
 /*MLX Image*/
 void	get_image(t_game *game);
 void	get_texture(t_game *game);
-void	put_img_floor(t_game *game, t_images *image);
-void	put_img_map(t_game *game, t_images *image);
 int		row_count(char **grid);
 int		valide_mlx_game(t_game *game);
 t_game	*initilize_data(t_game *game);
+void	get_width_and_height(t_game *game);
 
 /* initialisation */
 void	check_empty(char *map);
