@@ -30,6 +30,7 @@ int32_t	valide_mlx_game(t_game *game)
 	get_image(game);
 	resize_image(game);
 	render_map(game);
+	mlx_key_hook(game->mlx, &my_key_hook, game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
 	free(game->textu);

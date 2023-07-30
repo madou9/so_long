@@ -26,5 +26,6 @@ t_game	*initilize_data(t_game *game)
 {
 	get_width_and_height(game);
 	game->img_size = 32;
+	game->collect = count_rupees(game);
 	return (game);
 }

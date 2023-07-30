@@ -52,8 +52,8 @@ typedef struct s_game
 	t_textures	*textu;
 	t_images	*imag;
 	int			collect;
-	int			move_count;
 	int			img_size;
+	int			move_count;
 	int			exit;
 	int			width;
 	int			height;
@@ -98,4 +98,12 @@ void	image_select(t_game *data,char val, size_t ay, size_t ax);
 void	render_map(t_game *data);
 void	resize_image(t_game *game);
 
+void	my_key_hook(mlx_key_data_t keydata, void	*param);
+void	move_up(t_game *game);
+void	move_down(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
+int		count_rupees(t_game *game);
+void	collect_rupee(t_game *game);
+void	delete_orbs(t_game *game, int y, int x);
 #endif

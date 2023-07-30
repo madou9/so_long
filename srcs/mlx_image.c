@@ -77,11 +77,15 @@ void	image_select(t_game *data,char val, size_t ay, size_t ax)
 	}
 	if (val == 'E')
 	{
-		if ((mlx_image_to_window(data->mlx, data->imag->exit,
-				ax, ay) < 0) &&
-			mlx_image_to_window(data->mlx, data->imag->exit_2,
-				ax, ay))
+		if (mlx_image_to_window(data->mlx, data->imag->exit,
+				ax, ay) < 0)
 			error_message("Failed to put image to window");
+		else
+		{
+			if(mlx_image_to_window(data->mlx, data->imag->exit_2,
+				ax, ay) < 0)
+			error_message("Failed to put image to window");
+		}
 	}
 }
 
@@ -96,13 +100,11 @@ void	render_map(t_game *data)
 	ay =0;
 	while (y < data->height)
 	{
-		// printf("data->height = %d\n", data->height);
 		x = 0;
 		ax = 0;
 		printf("the line here is %s\n", data->grid[y]);
 		while (x < data->width)
 		{
-			// printf("data->width = %d\n", data->width);
 			image_select(data, data->grid[y][x], ay, ax);
 			x++;
 			ax += data->img_size;
@@ -111,52 +113,3 @@ void	render_map(t_game *data)
 		ay += data->img_size;
 	}
 }
-
-// void	put_img_floor(t_game *game, t_images *image)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	x = 0;
-// 	while (game->mapcopy[x])
-// 	{
-// 		printf("put_img_floor\n");
-// 		y = 0;
-// 		while (game->mapcopy[x][y])
-// 		{
-// 			mlx_image_to_window(game->mlx, image->floor, x * 32, y * 32);
-// 			if (game->mapcopy[x][y] == '1')
-// 				mlx_image_to_window(game->mlx, image->wall, x * 32, y * 32);
-// 			else if (game->mapcopy[x][y] == 'E')
-// 			{
-// 				mlx_image_to_window(game->mlx, image->exit, x * 32, y * 32);
-// 				mlx_image_to_window(game->mlx, image->exit_2, x * 32, y * 32);
-// 			}
-// 			y++;
-// 		}
-// 		x++;
-// 	}
-// }
-
-// void	put_img_map(t_game *game, t_images *image)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	put_img_floor(game, image);
-// 	y = 0;
-// 	while (game->mapcopy[y])
-// 	{
-// 		printf("put_img_map\n");
-// 		x = 0;
-// 		while (game->mapcopy[y][x])
-// 		{
-// 			if (game->mapcopy[y][x] == 'C')
-// 				mlx_image_to_window(game->mlx, image->collec, x * 32, y * 32);
-// 			if (game->mapcopy[y][x] == 'P')
-// 				mlx_image_to_window(game->mlx, image->player, x * 32, y * 32);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }

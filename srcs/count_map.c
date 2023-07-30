@@ -46,52 +46,46 @@ int	count_rupees(t_game *game)
 	return (i);
 }
 
-int	get_link_pos(t_game *game, char c )
+void delete_orbs(t_game *game, int y, int x)
 {
-	int	y;
-	int	x;
+    int i = 0;
 
-	y = 0;
-	while (y < game->height)
-	{
-		x = 0;
-		while (x < game->width)
-		{
-			if (game->grid[y][x] == 'P')
-			{
-				if (c == 'x')
-					return (x);
-				else
-					return (y);
-			}
-			x++;
-		}
-		y++;
-	}
-	return (0);
+    while (i < game->collect)
+    {
+        if (game->imag->collec->instances[i].y == y * game->img_size &&
+            game->imag->collec->instances[i].x == x * game->img_size &&
+            game->imag->collec->instances[i].enabled == true)
+        {
+			game->collect--;
+            game->imag->collec->instances[i].enabled = false; // Disable the orb
+            return;
+        }
+        i++;
+    }
 }
 
-int	get_exit_pos(t_game *game, char c )
+// Function to handle orb collection logic when the player moves
+void collect_rupee(t_game *game)
 {
-	int	y;
-	int	x;
+    int player_y;
+    int player_x;
 
-	y = 0;
-	while (y < game->height)
-	{
-		x = 0;
-		while (x < game->width)
-		{
-			if (game->grid[y][x] == 'E')
-			{
-				if (c == 'x')
-					return (x);
-				else
-					return (y);
-			}
-			x++;
-		}
-		y++;
-	}
-	return (0);
+    player_x = game->imag->player->instances->x / 32;
+    player_y = game->imag->player->instances->y / 32;
+    if (game->grid[player_y][player_x] == 'C') // Assuming 'C' represents a collectible orb in the game map
+    {
+        delete_orbs(game, player_y, player_x); // Collect the orb by deleting it
+        game->grid[player_y][player_x] = '0'; // Update the game map to remove the orb
+        game->collect++; // Increment the count of collected orbs
+
+        // Check if all orbs are collected, and if yes, disable the exit
+        if (game->collect == 0)
+            game->imag->exit->instances->enabled = false;
+    }
+    if (game->grid[player_y][player_x] == 'E') // Assuming 'E' represents the exit in the game map
+    {
+        // Check if all orbs are collected, and if yes, close the window
+        if (game->collect == 0)
+            mlx_close_window(game->mlx);
+    }
 }

@@ -6,7 +6,7 @@ SRCS = srcs/
 
 LIBFT = ./libft/libft.a
 
-SRC = $(SRCS)main.c $(SRCS)so_long.c $(SRCS)map.c $(SRCS)init_game.c  $(SRCS)check_map.c  $(SRCS)check_map1.c  $(SRCS)count_map.c $(SRCS)mlx_image.c \
+SRC = $(SRCS)main.c $(SRCS)so_long.c $(SRCS)map.c $(SRCS)init_game.c  $(SRCS)check_map.c  $(SRCS)check_map1.c  $(SRCS)count_map.c $(SRCS)mlx_image.c $(SRCS)move.c\
 
 OBJ = $(SRC:.c=.o)
 
