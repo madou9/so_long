@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 19:35:29 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/28 21:04:07 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/31 13:18:05 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,46 +50,27 @@ void	resize_image(t_game *game)
 	mlx_resize_image(game->imag->exit_2, game->img_size, game->img_size);
 }
 
-void	image_select(t_game *data,char val, size_t ay, size_t ax)
+void	image_select(t_game *data, char val, size_t ay, size_t ax)
 {
-
-	if (mlx_image_to_window(data->mlx, data->imag->floor,
-			ax, ay) < 0)
-		error_message("Failed to put image to window");
 	if (val == '1')
-	{
-		printf("data->image_select = %d\n", data->height);
 		if (mlx_image_to_window(data->mlx, data->imag->wall,
 				ax, ay) < 0)
 			error_message("Failed to put image to window");
-	}
 	if (val == 'C')
-	{
 		if (mlx_image_to_window(data->mlx, data->imag->collec,
 				ax, ay) < 0)
 			error_message("Failed to put image to window");
-	}
 	if (val == 'P')
-	{
 		if (mlx_image_to_window(data->mlx, data->imag->player,
 				ax, ay) < 0)
 			error_message("Failed to put image to window");
-	}
 	if (val == 'E')
-	{
 		if (mlx_image_to_window(data->mlx, data->imag->exit,
 				ax, ay) < 0)
 			error_message("Failed to put image to window");
-		else
-		{
-			if(mlx_image_to_window(data->mlx, data->imag->exit_2,
-				ax, ay) < 0)
-			error_message("Failed to put image to window");
-		}
-	}
 }
 
-void	render_map(t_game *data)
+void	fill_background(t_game *data)
 {
 	int		x;
 	int		y;
@@ -97,15 +78,16 @@ void	render_map(t_game *data)
 	int		ay;
 
 	y = 0;
-	ay =0;
+	ay = 0;
 	while (y < data->height)
 	{
 		x = 0;
 		ax = 0;
-		printf("the line here is %s\n", data->grid[y]);
 		while (x < data->width)
 		{
-			image_select(data, data->grid[y][x], ay, ax);
+			if (mlx_image_to_window(data->mlx, data->imag->floor,
+					ax, ay) < 0)
+				error_message("Failed to put image to window");
 			x++;
 			ax += data->img_size;
 		}

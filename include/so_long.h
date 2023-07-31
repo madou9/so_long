@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:36:35 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/28 22:29:09 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/31 16:04:28 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,43 +67,47 @@ typedef struct s_game
 }				t_game;
 
 /* check map */
-
-void	check_map(t_game *game);
-int		get_map_size(char *map);
+void	check_ber(char *map_file);
 char	*read_map_file(char *filename);
+void	check_empty_map(char *map);
+void	check_contents_map(t_game *game);
+int		get_map_size(char *map);
+void	check_contents_map(t_game *game);
+int		check_rectangle_map(char *map);
+void	validate_and_count_characters(t_game *game, char c, int x, int y);
+void	check_walls(t_game *game);
+void	error_message(char *msg);
+void	free_string_array(char **array);
+int		count_line(char **xy_map);
+int		count_rupees(t_game *game);
+int		row_count(char **grid);
+int		count_rupees(t_game *game);
+void	collect_rupee(t_game *game);
+void	delete_orbs(t_game *game, int y, int x);
+int		*start_pos(char **map);
+void	flood_map(t_game *game, int y, int x);
+int		check_flood(char **map);
+int		valid_path(t_game *game, char *fd);
+
+/* initialisation */
+t_game	*initilize_data(t_game *game);
 
 /*MLX Image*/
 void	get_image(t_game *game);
 void	get_texture(t_game *game);
-int		row_count(char **grid);
-int		valide_mlx_game(t_game *game);
-t_game	*initilize_data(t_game *game);
-void	get_width_and_height(t_game *game);
-
-/* initialisation */
-void	check_empty(char *map);
-int		count_line(char **xy_map);
-void	free_string_array(char **array);
-int		check_shape(char *map);
-void	check_map(t_game *game);
-void	validate_and_count_characters(t_game *game, char c, int x, int y);
-void	error_message(char *msg);
-void	check_walls(t_game *game);
-
-int		count_rupees(t_game *game);
-int		get_link_pos(t_game *game, char c );
-int		get_exit_pos(t_game *game, char c );
-
-void	image_select(t_game *data,char val, size_t ay, size_t ax);
-void	render_map(t_game *data);
 void	resize_image(t_game *game);
+void	fill_background(t_game *data);
+void	render_map(t_game *data);
+void	get_width_and_height(t_game *game);
+void	image_select(t_game *data, char val, size_t ay, size_t ax);
+int		start_game(t_game *game);
 
-void	my_key_hook(mlx_key_data_t keydata, void	*param);
+/*move mlx */
+
 void	move_up(t_game *game);
 void	move_down(t_game *game);
 void	move_left(t_game *game);
 void	move_right(t_game *game);
-int		count_rupees(t_game *game);
-void	collect_rupee(t_game *game);
-void	delete_orbs(t_game *game, int y, int x);
+void	my_key_hook(mlx_key_data_t keydata, void	*param);
+
 #endif
