@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:15:44 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/31 16:20:25 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/31 21:14:20 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,23 +93,3 @@ int	valid_path(t_game *game, char *fd)
 	free(game->mapcopy);
 	return (1);
 }
-
-// int	valid_path(t_game *game, char *fd)
-// {
-// 	int	*pos;
-
-// 	game->mapcopy = read_map(fd);
-// 	pos = start_pos(game->mapcopy);
-// 	flood_map(game, pos[0], pos[1]);
-// 	if (check_flood(game->mapcopy) == 0)
-// 	{
-// 		free(pos);
-// 		free_map(game->mapcopy);
-// 		ft_putstr_fd("There is no valid path.\n", 2);
-// 		return (0);
-// 	}
-// 	free(pos);
-// 	free_map(game->mapcopy);
-// 	return (1);
-// }
-

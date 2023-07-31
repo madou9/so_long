@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:36:35 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/31 16:04:28 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/31 22:38:49 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int		*start_pos(char **map);
 void	flood_map(t_game *game, int y, int x);
 int		check_flood(char **map);
 int		valid_path(t_game *game, char *fd);
+void	free_map(char **map);
 
 /* initialisation */
 t_game	*initilize_data(t_game *game);

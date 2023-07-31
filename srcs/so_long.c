@@ -6,11 +6,21 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:54:19 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/31 16:18:08 by ihama            ###   ########.fr       */
+/*   Updated: 2023/07/31 22:39:46 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	free_map(char **map)
+{
+	int	i;
+
+	i = -1;
+	while (map[++i])
+		free(map[i]);
+	free(map);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -28,14 +38,8 @@ int	main(int argc, char *argv[])
 	map_as_array = ft_split(map_as_str, '\n');
 	game->grid = map_as_array;
 	check_walls(game);
-	// check_contents_map(game);
-    if (!valid_path(game, argv[1]))
-    {
-        printf("Error: There is no valid path from the player to the exit\n");
-        free(game->grid);
-        free(game);
-        return EXIT_FAILURE;
-    }
-}
-
+	check_contents_map(game);
+	if (valid_path(game, argv[1]) == 1)
+		return (free_map(map_as_array), 1);
 	// start_game(game);
+}
