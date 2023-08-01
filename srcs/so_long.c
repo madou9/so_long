@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:54:19 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/31 22:39:46 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/01 15:49:47 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ int	main(int argc, char *argv[])
 	game->grid = map_as_array;
 	check_walls(game);
 	check_contents_map(game);
-	if (valid_path(game, argv[1]) == 1)
-		return (free_map(map_as_array), 1);
-	// start_game(game);
+	valid_path(game, argv[1]);
+	start_game(game);
+	free_map(game->grid);
+	free(game);
+	return (0);
 }

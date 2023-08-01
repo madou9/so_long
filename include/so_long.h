@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:36:35 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/31 22:38:49 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/01 15:02:31 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	collect_rupee(t_game *game);
 void	delete_orbs(t_game *game, int y, int x);
 int		*start_pos(char **map);
 void	flood_map(t_game *game, int y, int x);
-int		check_flood(char **map);
+int		check_flood(t_game *game);
 int		valid_path(t_game *game, char *fd);
 void	free_map(char **map);
 

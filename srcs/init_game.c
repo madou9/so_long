@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:55:22 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/31 13:03:01 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/01 17:21:53 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	render_map(t_game *data)
 	{
 		x = 0;
 		ax = 0;
-		printf("the line here is %s\n", data->grid[y]);
 		while (x < data->width)
 		{
 			image_select(data, data->grid[y][x], ay, ax);

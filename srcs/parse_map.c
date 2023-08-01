@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:15:44 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/31 21:14:20 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/01 15:26:55 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	*start_pos(char **map)
 
 void	flood_map(t_game *game, int y, int x)
 {
-	if (!(x < 1 || y < 1 || x >= game->width || y > game->height
+	get_width_and_height(game);
+	if (!(x < 1 || y < 1 || x >= game->width || y >= game->height
 			|| game->mapcopy[y][x] == '1' || game->mapcopy[y][x] == 'X'))
 	{
 		game->mapcopy[y][x] = 'X';
@@ -50,19 +51,19 @@ void	flood_map(t_game *game, int y, int x)
 	}
 }
 
-int	check_flood(char **map)
+int	check_flood(t_game *game)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	while (map[y])
+	while (game->mapcopy[y])
 	{
 		x = 0;
-		while (map[y][x])
+		while (game->mapcopy[y][x])
 		{
-			if (!(map[y][x] == '1' || map[y][x] == '0'
-				|| map[y][x] == 'X'))
+			if (!(game->mapcopy[y][x] == '1' || game->mapcopy[y][x] == '0'
+				|| game->mapcopy[y][x] == 'X'))
 				return (1);
 			x++;
 		}
@@ -83,13 +84,11 @@ int	valid_path(t_game *game, char *fd)
 	pos = start_pos(game->mapcopy);
 	flood_map(game, pos[0], pos[1]);
 	free(pos);
-	if (check_flood(game->mapcopy) == 0)
+	if (check_flood(game) == 1)
 	{
-		printf("There is no valid path");
-		free(game->mapcopy);
+		free_map(game->mapcopy);
 		error_message("There is no valid path.");
-		return (0);
 	}
-	free(game->mapcopy);
-	return (1);
+	free_map(game->mapcopy);
+	return (0);
 }
