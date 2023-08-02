@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:15:44 by ihama             #+#    #+#             */
-/*   Updated: 2023/08/01 15:26:55 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/02 17:39:39 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ int	valid_path(t_game *game, char *fd)
 		error_message("There is no valid path.");
 	}
 	free_map(game->mapcopy);
+	free(map_as_str);
 	return (0);
 }

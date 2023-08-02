@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:54:49 by ihama             #+#    #+#             */
-/*   Updated: 2023/08/01 17:21:18 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/02 19:35:59 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	move_up(t_game *game)
 	{
 		game->imag->player->instances->y -= 32;
 		game->move_count++;
-		printf("move_up:%d\n", game->move_count);
+		ft_printf("move_up:%d\n", game->move_count);
 	}
 }
 
@@ -30,7 +30,7 @@ void	move_down(t_game *game)
 	{
 		game->imag->player->instances->y += 32;
 		game->move_count++;
-		printf("move_down:%d\n", game->move_count);
+		ft_printf("move_down:%d\n", game->move_count);
 	}
 }
 
@@ -41,7 +41,7 @@ void	move_left(t_game *game)
 	{
 		game->imag->player->instances->x -= 32;
 		game->move_count++;
-		printf("move_left:%d\n", game->move_count);
+		ft_printf("move_left:%d\n", game->move_count);
 	}
 }
 
@@ -52,7 +52,7 @@ void	move_right(t_game *game)
 	{
 		game->imag->player->instances->x += 32;
 		game->move_count++;
-		printf("move_right:%d\n", game->move_count);
+		ft_printf("move_right:%d\n", game->move_count);
 	}
 }
 

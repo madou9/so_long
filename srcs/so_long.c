@@ -6,21 +6,11 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:54:19 by ihama             #+#    #+#             */
-/*   Updated: 2023/08/01 15:49:47 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/02 17:39:39 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-void	free_map(char **map)
-{
-	int	i;
-
-	i = -1;
-	while (map[++i])
-		free(map[i]);
-	free(map);
-}
 
 int	main(int argc, char *argv[])
 {
@@ -43,5 +33,6 @@ int	main(int argc, char *argv[])
 	start_game(game);
 	free_map(game->grid);
 	free(game);
+	system("leaks so_long");
 	return (0);
 }

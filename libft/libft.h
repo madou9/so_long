@@ -6,18 +6,19 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:25:48 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/23 20:43:22 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/02 19:40:15 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# include <stdarg.h>
 # include <stdio.h>
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
-# include "get_next_line.h"
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -52,6 +53,15 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+int		ft_printchar(int c);
+int		format_check(va_list args, const char format);
+int		ft_printf(const char *s, ...);
+int		ft_putstr(char *str);
+int		ft_hexa_forma(unsigned long long n);
+int		ft_hexa_deci(int n);
+int		ft_unsigned_deci(unsigned int c);
+int		ft_hexa_low(unsigned int n);
+int		ft_hexa_uper(unsigned int n);
 
 /* Bonus functions */
 typedef struct s_list

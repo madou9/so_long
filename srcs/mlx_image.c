@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 19:35:29 by ihama             #+#    #+#             */
-/*   Updated: 2023/08/01 17:01:20 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/02 21:04:36 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	get_texture(t_game *game)
 	game->textu = ft_calloc(1, sizeof(t_textures));
 	game->textu->wall = mlx_load_png("../textures/wall.png");
 	game->textu->floor = mlx_load_png("../textures/floor.png");
-	game->textu->player = mlx_load_png("../resources/hero/1.png");
+	game->textu->player = mlx_load_png("..ß/textures/play.png");
 	game->textu->collec = mlx_load_png("../textures/spark21.png");
-	game->textu->exit = mlx_load_png("../textures/salida.png");
-	game->textu->exit_2 = mlx_load_png("../textures/salida2.png");
+	game->textu->exit = mlx_load_png("../textures/exit.png");
+	game->textu->exit_2 = mlx_load_png("../textures/exit_2.png");
 }
 
 void	resize_image(t_game *game)
@@ -65,9 +65,10 @@ void	image_select(t_game *data, char val, size_t ay, size_t ax)
 				ax, ay) < 0)
 			error_message("Failed to put image to window");
 	if (val == 'E')
-		if (mlx_image_to_window(data->mlx, data->imag->exit,
-				ax, ay) < 0)
-			error_message("Failed to put image to window");
+	{
+		mlx_image_to_window(data->mlx, data->imag->exit_2, ax, ay);
+		mlx_image_to_window(data->mlx, data->imag->exit, ax, ay);
+	}
 }
 
 void	fill_background(t_game *data)

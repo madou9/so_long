@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:54:29 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/28 22:13:13 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/02 19:16:29 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,30 +24,29 @@ int	count_line(char **xy_map)
 
 int	get_map_size(char *map)
 {
-	char	*buffer;
+	char	*temp;
 	int		total_bytes;
-	int		byte_chunks;
+	int		bit_chunk;
 	int		fd;
 
-	printf("get_map_size!\n");
 	fd = open(map, O_RDONLY);
 	total_bytes = 0;
-	buffer = malloc (sizeof(int) * 1024);
-	byte_chunks = read(fd, buffer, 1024);
-	if (!(byte_chunks))
+	temp = malloc (sizeof(int) * 1024);
+	bit_chunk = read(fd, temp, 1024);
+	if (!(bit_chunk))
 	{
-		free (buffer);
+		free (temp);
 		close(fd);
 		return (0);
 	}
-	total_bytes = total_bytes + byte_chunks;
-	if (byte_chunks != '\0')
+	total_bytes = total_bytes + bit_chunk;
+	if (bit_chunk != '\0')
 	{
-		byte_chunks = read(fd, buffer, 1024);
-		total_bytes = total_bytes + byte_chunks;
+		bit_chunk = read(fd, temp, 1024);
+		total_bytes = total_bytes + bit_chunk;
 	}
 	close(fd);
-	free (buffer);
+	free (temp);
 	return (total_bytes);
 }
 
@@ -57,11 +56,10 @@ char	*read_map_file(char *filename)
 	int		num_bytes;
 	char	*map_buffer;
 
-	printf("read_map_file!\n");
 	num_bytes = get_map_size(filename) + 1;
 	if (num_bytes <= 0)
 		return (NULL);
-	map_buffer = calloc(sizeof(char), num_bytes);
+	map_buffer = ft_calloc(sizeof(char), num_bytes);
 	if (!map_buffer)
 		return (NULL);
 	fd = open(filename, O_RDONLY);

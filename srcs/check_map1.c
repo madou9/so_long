@@ -6,24 +6,11 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 12:55:38 by ihama             #+#    #+#             */
-/*   Updated: 2023/07/31 15:17:44 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/02 17:39:39 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-void	free_string_array(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
 
 void	check_ber(char *map_file)
 {
@@ -43,6 +30,31 @@ void	check_ber(char *map_file)
 			error_message("Error: Not a .ber file");
 		i++;
 	}
+}
+
+int	check_rectangle_map(char *map)
+{
+	char	**map_sketch;
+	size_t	reference;
+	int		i;
+	int		j;
+
+	map_sketch = ft_split(map, '\n');
+	i = count_line(map_sketch);
+	reference = ft_strlen(map_sketch[0]);
+	j = 0;
+	while (j < i)
+	{
+		if (ft_strlen(map_sketch[j]) != reference)
+		{
+			free_map(map_sketch);
+			error_message("Error :check rectangle map");
+			return (TRUE);
+		}
+		j++;
+	}
+	free_map(map_sketch);
+	return (0);
 }
 
 void	check_walls(t_game *game)
@@ -66,11 +78,4 @@ void	check_walls(t_game *game)
 		if (game->grid[j][0] != '1' || game->grid[j][len - 1] != '1')
 			error_message("Left or right border is not valid.");
 	}
-}
-
-void	error_message(char *msg)
-{
-	ft_putstr_fd("Error\n", 2);
-	ft_putendl_fd(msg, 2);
-	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:36:35 by ihama             #+#    #+#             */
-/*   Updated: 2023/08/01 15:02:31 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/02 17:39:39 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@
 
 # define TRUE 1
 # define FALSE 0
-# define PIXEL 50
-#define WIDTH 460
-#define HEIGHT 160
 
 typedef struct s_textures {
 	mlx_texture_t	*floor;
@@ -52,6 +49,7 @@ typedef struct s_game
 	t_textures	*textu;
 	t_images	*imag;
 	int			collect;
+	int			collect_cpy;
 	int			img_size;
 	int			move_count;
 	int			exit;
@@ -77,10 +75,9 @@ int		check_rectangle_map(char *map);
 void	validate_and_count_characters(t_game *game, char c, int x, int y);
 void	check_walls(t_game *game);
 void	error_message(char *msg);
-void	free_string_array(char **array);
+void	free_map(char **array);
 int		count_line(char **xy_map);
 int		count_rupees(t_game *game);
-int		row_count(char **grid);
 int		count_rupees(t_game *game);
 void	collect_rupee(t_game *game);
 void	delete_orbs(t_game *game, int y, int x);

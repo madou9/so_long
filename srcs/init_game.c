@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:55:22 by ihama             #+#    #+#             */
-/*   Updated: 2023/08/01 17:21:53 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/02 16:42:20 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_game	*initilize_data(t_game *game)
 	get_width_and_height(game);
 	game->img_size = 32;
 	game->collect = count_rupees(game);
+	game->collect_cpy = game->collect;
 	return (game);
 }
 

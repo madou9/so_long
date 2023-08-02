@@ -6,21 +6,11 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:15:22 by ihama             #+#    #+#             */
-/*   Updated: 2023/08/01 17:19:01 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/02 17:29:42 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-int	row_count(char **grid)
-{
-	int	y;
-
-	y = 0;
-	while (grid[y])
-		y++;
-	return (y);
-}
 
 int	count_rupees(t_game *game)
 {
@@ -36,9 +26,7 @@ int	count_rupees(t_game *game)
 		while (x < game->width)
 		{
 			if (game->grid[y][x] == 'C')
-			{
 				i++;
-			}
 			x++;
 		}
 		y++;
@@ -48,23 +36,17 @@ int	count_rupees(t_game *game)
 
 void	delete_orbs(t_game *game, int y, int x)
 {
-	int	i;
+	int	orb_i;
 
-	i = 0;
-	while (i < game->collect)
+	x = x * game->img_size;
+	y = y * game->img_size;
+	orb_i = 0;
+	while (orb_i < game->collect_cpy)
 	{
-		if (game->imag->collec->instances[i].y == y * game->img_size)
-		{
-			if (game->imag->collec->instances[i].x == x * game->img_size)
-			{
-				if (game->imag->collec->instances[i].enabled == true)
-				{
-					game->imag->collec->instances[i].enabled = false;
-					return ;
-				}
-			}
-		}
-		i++;
+		if (game->imag->collec->instances[orb_i].x
+			== x && game->imag->collec->instances[orb_i].y == y)
+			game->imag->collec->instances[orb_i].enabled = false;
+		orb_i++;
 	}
 }
 
@@ -77,18 +59,18 @@ void	collect_rupee(t_game *game)
 	player_x = game->imag->player->instances->x / 32;
 	if (game->grid[player_y][player_x] == 'C')
 	{
+		printf("i took the collectibles\n");
 		delete_orbs(game, player_y, player_x);
 		game->grid[player_y][player_x] = '0';
 		game->collect--;
 		if (game->collect == 0)
 			game->imag->exit->instances->enabled = false;
-			if (mlx_image_to_window(game->mlx, game->imag->exit_2,
-				game->img_size, game->img_size) < 0)
-			error_message("Failed to put image to window");
 	}
-	if (game->grid[player_y][player_x] == 'E')
+	if (game->grid[player_y][player_x] == 'E' && game->collect == 0)
 	{
-		if (game->collect == 0)
-			mlx_close_window(game->mlx);
+		mlx_close_window(game->mlx);
+		printf("Congratulations!\n");
+		printf("You made link rich! 💰💰💰\n");
+		printf("He can now sleep in his hole in the ground\n");
 	}
 }
