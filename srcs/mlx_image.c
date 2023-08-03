@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 19:35:29 by ihama             #+#    #+#             */
-/*   Updated: 2023/08/03 12:58:05 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/03 14:48:34 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	get_image(t_game *game)
 void	get_texture(t_game *game)
 {
 	game->textu = ft_calloc(1, sizeof(t_textures));
-	game->textu->wall = mlx_load_png("../textures/wall.png");
-	game->textu->floor = mlx_load_png("../textures/Grass.png");
-	game->textu->player = mlx_load_png("../textures/zenitsu.png");
-	game->textu->collec = mlx_load_png("../textures/spark.png");
-	game->textu->exit = mlx_load_png("../textures/exit.png");
-	game->textu->exit_2 = mlx_load_png("../textures/exit_2.png");
+	game->textu->wall = mlx_load_png("textures/wall.png");
+	game->textu->floor = mlx_load_png("textures/Grass.png");
+	game->textu->player = mlx_load_png("textures/zenitsu.png");
+	game->textu->collec = mlx_load_png("textures/spark.png");
+	game->textu->exit = mlx_load_png("textures/exit.png");
+	game->textu->exit_2 = mlx_load_png("textures/exit_2.png");
 }
 
 void	resize_image(t_game *game)

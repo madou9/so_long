@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:26:25 by ihama             #+#    #+#             */
-/*   Updated: 2023/08/02 17:28:59 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/03 15:38:17 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ void	check_empty_map(char *map)
 	size_t	i;
 
 	i = 0;
-	if (!map[i])
-		error_message("Map is empty");
+	while (map[i])
+	{
+		if (map[0] == '\n' || (map[i] == '\n' && map[i + 1] == '\n'))
+		{
+			error_message("Error: Map contains empty lines");
+		}
+		i++;
+	}
 }
