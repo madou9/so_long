@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 19:35:29 by ihama             #+#    #+#             */
-/*   Updated: 2023/08/02 21:04:36 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/03 12:58:05 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	get_texture(t_game *game)
 {
 	game->textu = ft_calloc(1, sizeof(t_textures));
 	game->textu->wall = mlx_load_png("../textures/wall.png");
-	game->textu->floor = mlx_load_png("../textures/floor.png");
-	game->textu->player = mlx_load_png("..ß/textures/play.png");
-	game->textu->collec = mlx_load_png("../textures/spark21.png");
+	game->textu->floor = mlx_load_png("../textures/Grass.png");
+	game->textu->player = mlx_load_png("../textures/zenitsu.png");
+	game->textu->collec = mlx_load_png("../textures/spark.png");
 	game->textu->exit = mlx_load_png("../textures/exit.png");
 	game->textu->exit_2 = mlx_load_png("../textures/exit_2.png");
 }
