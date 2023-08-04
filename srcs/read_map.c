@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:54:29 by ihama             #+#    #+#             */
-/*   Updated: 2023/08/02 19:16:29 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/04 16:20:06 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@ int	get_map_size(char *map)
 	fd = open(map, O_RDONLY);
 	total_bytes = 0;
 	temp = malloc (sizeof(int) * 1024);
+	if (fd == -1)
+		error_message("can't find file");
 	bit_chunk = read(fd, temp, 1024);
 	if (!(bit_chunk))
 	{
 		free (temp);
 		close(fd);
-		return (0);
 	}
 	total_bytes = total_bytes + bit_chunk;
 	if (bit_chunk != '\0')

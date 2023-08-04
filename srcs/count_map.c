@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:15:22 by ihama             #+#    #+#             */
-/*   Updated: 2023/08/02 17:29:42 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/03 17:14:58 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	collect_rupee(t_game *game)
 	player_x = game->imag->player->instances->x / 32;
 	if (game->grid[player_y][player_x] == 'C')
 	{
-		printf("i took the collectibles\n");
 		delete_orbs(game, player_y, player_x);
 		game->grid[player_y][player_x] = '0';
 		game->collect--;
@@ -70,7 +69,7 @@ void	collect_rupee(t_game *game)
 	{
 		mlx_close_window(game->mlx);
 		printf("Congratulations!\n");
-		printf("You made link rich! 💰💰💰\n");
+		printf("You made Zenetsu Power!\n");
 		printf("He can now sleep in his hole in the ground\n");
 	}
 }

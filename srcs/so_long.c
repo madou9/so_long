@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:54:19 by ihama             #+#    #+#             */
-/*   Updated: 2023/08/03 15:29:33 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/04 16:26:43 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	main(int argc, char *argv[])
 	game = malloc(sizeof(t_game));
 	map_as_str = read_map_file(argv[1]);
 	check_empty_map(map_as_str);
+	check_empty_line(map_as_str);
 	check_rectangle_map(map_as_str);
 	map_as_array = ft_split(map_as_str, '\n');
-	printf("map : %s\n", map_as_str);
 	game->grid = map_as_array;
 	check_walls(game);
 	check_contents_map(game);
@@ -37,6 +37,6 @@ int	main(int argc, char *argv[])
 	start_game(game);
 	free_map(game->grid);
 	free(game);
-	system("leaks so_long");
+	free(map_as_str);
 	return (0);
 }

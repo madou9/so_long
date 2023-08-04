@@ -6,7 +6,7 @@
 /*   By: ihama <ihama@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:36:35 by ihama             #+#    #+#             */
-/*   Updated: 2023/08/02 17:39:39 by ihama            ###   ########.fr       */
+/*   Updated: 2023/08/04 15:46:29 by ihama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_game
 /* check map */
 void	check_ber(char *map_file);
 char	*read_map_file(char *filename);
+void	check_empty_line(char *map);
 void	check_empty_map(char *map);
 void	check_contents_map(t_game *game);
 int		get_map_size(char *map);
